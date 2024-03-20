@@ -3,6 +3,8 @@
 namespace db;
 
 use db\DataSource;
+use model\WordModel;
+
 // use model\UserModel;
 
 class WordQuery
@@ -13,7 +15,20 @@ class WordQuery
         $sql = 'select * from words where id = :id';
         $result = $db->selectOne($sql, [
             ':id' => $id
-        ]);
+        ], DataSource::CLS, WordModel::class);
+
+        return $result;
+    }
+    public static function fetchByTitle($title, $allowFuzzyMatching = false)
+    {
+        $db = new DataSource;
+        $sql = $allowFuzzyMatching ?
+            'select * from words where title like :title' :
+            'select * from words where title = :title';
+        $title = $allowFuzzyMatching ? "%{$title}%" : $title;
+        $result = $db->select($sql, [
+            ':title' => $title
+        ], DataSource::CLS, WordModel::class);
 
         return $result;
     }

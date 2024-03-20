@@ -7,15 +7,21 @@ use db\WordQuery;
 
 function get()
 {
-    // $user = UserQuery::fetchById('testさん');
-
-    $word = WordQuery::fetchById(9820);
-
-    // var_dump($word);
-
-    echo $word['title'];
-    echo '<br/>';
-    echo $word['ja_definition'];
-
     \view\home\index();
+}
+
+function post()
+{
+
+    $search_text = get_param('search_text', null, true);
+
+    if (!$search_text) {
+        $words = [];
+        \view\home\search_result($search_text, $words);
+        return;
+    }
+
+    $words = WordQuery::fetchByTitle($search_text, true);
+
+    \view\home\search_result($search_text, $words);
 }

@@ -9,6 +9,7 @@ require_once SOUECE_BASE . 'libs/router.php';
 // Model
 require_once SOUECE_BASE . 'models/abstract.model.php';
 require_once SOUECE_BASE . 'models/user.model.php';
+require_once SOUECE_BASE . 'models/word.model.php';
 
 // Message
 require_once SOUECE_BASE . 'libs/message.php';
