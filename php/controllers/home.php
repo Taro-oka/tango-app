@@ -4,6 +4,7 @@ namespace controller\home;
 
 use db\UserQuery;
 use db\WordQuery;
+use model\WordModel;
 
 function get()
 {
@@ -22,6 +23,7 @@ function post()
     }
 
     $words = WordQuery::fetchByTitle($search_text, true);
+    $words = WordModel::sortByTitleMatch($words, $search_text);
 
     \view\home\search_result($search_text, $words);
 }
