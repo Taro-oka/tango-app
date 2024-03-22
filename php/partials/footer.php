@@ -9,7 +9,7 @@ function footer()
 ?>
 
     </main>
-    <footer class="text-center mt-12">
+    <footer class="text-center my-12">
         <span>&copy; Taro Okamoto</span>
     </footer>
     </div>

@@ -29,7 +29,7 @@ function search_result($text, $words)
             if ($cnt > 0) {
                 result_main($first_word);
                 if (!empty($words)) {
-                    result_rests($words);
+                    result_rests($words, $text);
                 }
             } else {
                 echo "<h3>$text に一致する検索結果はありません。</h3>";
@@ -50,22 +50,22 @@ function result_main($word)
 <?php
 }
 
-function result_rests($words)
+function result_rests($words, $search_text)
 {
 ?>
     <h2 class="font-bold text-lg mb-2">もしかしてDid you also mean...?</h2>
     <ul>
         <?php foreach ($words as $word) {
-            result_rest($word);
+            result_rest($word, $search_text);
         } ?>
     </ul>
 <?php
 }
 
-function result_rest($word)
+function result_rest($word, $search_text)
 {
 ?>
-    <li class="hover:font-bold w-fit"><a href="<?php the_url('home') ?>" class="confirm-link"><?php echo $word->title; ?></a></li>
+    <li class="hover:font-bold w-fit"><a href="<?php the_url('detail?id=' . $word->id . '&srch_txt=' . $search_text) ?>" class="confirm-link"><?php echo $word->title; ?></a></li>
 <?php
 }
 ?>
