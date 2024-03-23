@@ -28,6 +28,7 @@ require_once SOUECE_BASE . 'partials/footer.php';
 require_once SOUECE_BASE . 'views/home.php';
 require_once SOUECE_BASE . 'views/about.php';
 require_once SOUECE_BASE . 'views/detail.php';
+require_once SOUECE_BASE . 'views/edit.php';
 
 // 学習用：PHPのuseは、use 名前空間\XXXX と書くと、勝手にXXXXをクラスだと認識する。なので、名前空間内の関数をuseしたい場合は、use function 名前空間\関数名
 // というように、関数であることを明示する必要がある！！
