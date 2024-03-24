@@ -24,3 +24,15 @@ a {
     padding-left: 50px;
   }
 }
+
+.alert-info {
+  font-weight: bold;
+  color: rgb(0, 121, 0);
+  background-color: #aaff00;
+}
+
+.alert-danger {
+  font-weight: bold;
+  color: rgb(138, 14, 0);
+  background-color: #ff0000;
+}

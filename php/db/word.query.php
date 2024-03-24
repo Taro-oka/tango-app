@@ -33,6 +33,27 @@ class WordQuery
         return $result;
     }
 
+    public static function updateById($id, $en, $ja)
+    {
+
+        if (!($en * $ja)) {
+            return false;
+        }
+
+        $db = new DataSource;
+        $sql = '
+        update words set en_definition = :en_definition, ja_definition = :ja_definition
+        where id = :id
+        ';
+        $result = $db->execute($sql, [
+            ':en_definition' => $en,
+            ':ja_definition' => $ja,
+            ':id' => $id,
+        ]);
+
+        return $result;
+    }
+
     // public static function insert($user)
     // {
     //     $db = new DataSource;

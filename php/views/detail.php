@@ -5,7 +5,7 @@ namespace view\detail;
 function index($word, $searched_text, $is_first)
 {
 ?>
-    <div class="ml-4 mt-6">
+    <div class="mx-4 mt-6">
         <div class="flex flex-row gap-4 items-end">
             <div class="w-fit">
                 <h2 class="text-2xl mb-2">単語: <span class="font-bold"><?php echo $word->title; ?></span></h2>

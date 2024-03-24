@@ -5,7 +5,7 @@ namespace view\home;
 function index()
 {
 ?>
-    <div class="pl-4 mt-4">
+    <div class="px-4 mt-4">
         <div class="text-2xl font-bold mb-4">↓に英単語を入力して、検索！</div>
         <form action="<?php echo CURRENT_URI; ?>" method="POST" class="flex flex-col">
             <input type="text" name="search_text" class="w-60 h-10 pl-2 border-2 border-black mb-4" autofocus>
@@ -61,7 +61,8 @@ function result_rests($words, $search_text, $is_first)
 {
 ?>
     <h2 class="font-bold text-lg mb-2">もしかしてDid you also mean...?</h2>
-    <ul>
+    <button class="sort-words block w-fit mt-6 cursor-pointer py-2 px-4 bg-slate-200 font-bold">並べ替える</button>
+    <ul class="word-list">
         <?php foreach ($words as $word) {
             result_rest($word, $search_text, $is_first);
         } ?>
