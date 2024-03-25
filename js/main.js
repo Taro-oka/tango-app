@@ -1,29 +1,60 @@
 document.addEventListener("DOMContentLoaded", () => {
-  addEventToEditForm();
   addEventToSortBtn();
+  addEventToEditForm();
 });
 
-function addEventToSortBtn() {
+function getElementsForSorting() {
+  let sorted = false;
   const btn = document.querySelector(".sort-words");
   const list = document.querySelector(".word-list");
+  const liItems = Array.from(list.querySelectorAll("li"));
+  const sortedLiItems = [...liItems].sort((a, b) => {
+    const textA = a.querySelector("a").textContent.toUpperCase();
+    const textB = b.querySelector("a").textContent.toUpperCase();
+    return textA.localeCompare(textB);
+  });
+
+  return {
+    domElements: {
+      btn,
+      list,
+    },
+    elements: {
+      liItems,
+      sortedLiItems,
+    },
+    flag: {
+      sorted,
+    },
+  };
+}
+
+function addEventToSortBtn() {
+  const { domElements, elements, flag } = getElementsForSorting();
+  const { btn, list } = domElements;
+  const { liItems, sortedLiItems } = elements;
+  let { sorted } = flag;
 
   if (!btn || !list) {
     return;
   }
 
   btn.addEventListener("click", () => {
-    const liItems = Array.from(list.querySelectorAll("li"));
-    const sortedLiItems = liItems.sort((a, b) => {
-      const textA = a.querySelector("a").textContent.toUpperCase();
-      const textB = b.querySelector("a").textContent.toUpperCase();
-      return textA.localeCompare(textB);
-    });
-
     list.innerHTML = "";
 
-    sortedLiItems.forEach((li) => {
-      list.appendChild(li);
-    });
+    if (sorted) {
+      liItems.forEach((li) => {
+        list.appendChild(li);
+      });
+      btn.textContent = "並べ替える";
+    } else {
+      sortedLiItems.forEach((li) => {
+        list.appendChild(li);
+      });
+      btn.textContent = "もとに戻す";
+    }
+
+    sorted = !sorted;
   });
 }
 
